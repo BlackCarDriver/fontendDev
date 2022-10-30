@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.jsx src"
   },
   "dependencies": {
+    "antd": "^4.23.6",
     "babel-polyfill": "^6.26.0",
     "dva": "^2.4.1",
     "dva-loading": "^3.0.22",

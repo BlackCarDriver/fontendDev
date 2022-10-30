@@ -2,14 +2,14 @@
 
 前端项目开发步骤记录。
 
-- fec 初始化项目
+- fec 初始化项目 （fec初始化项目）
 
   ```
   npm config set @yy:registry https://npm-registry.yy.com/
   fec i react boss
   ```
 
-- dva 框架改造
+- dva 框架改造 （dva改造）
 
   ```
   2022-10-30
@@ -24,6 +24,16 @@
   用于页面过渡效果
   babel-polyfill：
   Babel默认只转换新的JavaScript句法（syntax），而不转换新的API，比如 Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise等全局对象不会转码。例如ES6在Array对象上新增了Array.from方法，Babel就会转码这个方法。如果想让这个方法运行，必须使用babel-polyfill.
+  ```
+
+- 简单静态路由 (simple route)
+
+  ```
+  2022-10-30
+  1. 引入antd
+  2. 调整代码结构
+  3. 新增两个页面demo\404, 绑定到路由
+  4. 异步态加载页面
   ```
 
   

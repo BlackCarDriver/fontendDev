@@ -1,8 +1,8 @@
 import dva from 'dva'
 import 'babel-polyfill'
-import './index.css'
 import createLoading from 'dva-loading'
 import createHistory from 'history/createBrowserHistory'
+import router from './routes/router'
 
 async function init () {
   // 1. Initialize
@@ -20,10 +20,10 @@ async function init () {
   // app.model(require('./models/example').default);
   
   // 4. Router
-  app.router(require('./router').default)
+  app.router(router)
   
   // 5. Start
-  app.start('#root')
+  app.start('#app')
 }
 
 init()
