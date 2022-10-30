@@ -1,0 +1,28 @@
+{
+  "name": "boss",
+  "version": "0.0.0",
+  "description": "boss",
+  "author": "blackcardriver <13169346002@163.com>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
+  },
+  "scripts": {
+    "dev": "fec d",
+    "watch": "fec w",
+    "build": "fec o",
+    "lint": "eslint --ext .js,.jsx src"
+  },
+  "devDependencies": {
+    "@yy/eslint-config-fe": "^2.3.0",
+    "eslint": "^5.13.0"
+  },
+  "eslintConfig": {
+    "extends": "@yy/fe/react"
+  },
+  "eslintIgnore": [
+    "/dev",
+    "/output"
+  ]
+}
