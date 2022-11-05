@@ -1,6 +1,7 @@
 const path = require('path')
-const BASE_PATH = '/boss/'
-// const targetUrl = 'http://localhost:4000'
+const BASE_PATH = '/boss'
+const targetUrl = 'https://172.29.190.69:4000'
+let cdn = BASE_PATH
 
 module.exports = (mode, req) => {
   const plugins = [
@@ -13,7 +14,7 @@ module.exports = (mode, req) => {
       path.resolve('./babel-plugin-dva-hmr/index.js')
     ])
   }
-
+  
   return {
     debug: true,
     debugWebpack: true,
@@ -24,6 +25,7 @@ module.exports = (mode, req) => {
     babelConfig: {
       plugins
     },
+    cdn,
     devServer: {
       publicPath: BASE_PATH,
       https: true, // endable https of dev mode
@@ -36,13 +38,13 @@ module.exports = (mode, req) => {
         rewrites: [
           { from: /^.*$/, to: BASE_PATH }
         ]
+      },
+      proxy: {
+        [`!(${BASE_PATH}/**)`]: {
+          target: targetUrl,
+          changeOrigin: true
+        }
       }
-      // proxy: {
-      //   [`!(${BASE_PATH}/**)`]: {
-      //     target: targetUrl,
-      //     changeOrigin: true
-      //   }
-      // }
     },
     extendWebpack (config) {
       config.set('externals', {
