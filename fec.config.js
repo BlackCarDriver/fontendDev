@@ -1,5 +1,6 @@
 const path = require('path')
-const BASE_PATH = '/'
+const BASE_PATH = '/boss/'
+// const targetUrl = 'http://localhost:4000'
 
 module.exports = (mode, req) => {
   const plugins = [
@@ -25,17 +26,17 @@ module.exports = (mode, req) => {
     },
     devServer: {
       publicPath: BASE_PATH,
-      https: true // endable https of dev mode
-      // before (app) {
-      //   app.get('/', (req, res) => {
-      //     res.redirect(BASE_PATH)
-      //   })
-      // },
-      // historyApiFallback: {
-      //   rewrites: [
-      //     { from: /^.*$/, to: BASE_PATH }
-      //   ]
-      // }
+      https: true, // endable https of dev mode
+      before (app) {
+        app.get('/', (req, res) => {
+          res.redirect(BASE_PATH)
+        })
+      },
+      historyApiFallback: {
+        rewrites: [
+          { from: /^.*$/, to: BASE_PATH }
+        ]
+      }
       // proxy: {
       //   [`!(${BASE_PATH}/**)`]: {
       //     target: targetUrl,

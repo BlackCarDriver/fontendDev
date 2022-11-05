@@ -12,7 +12,7 @@ async function init () {
       console.error('app onError -- ', error)
     }
   })
-
+  
   // 2. Plugins
   app.use(createLoading())
   

@@ -11,18 +11,23 @@
     "lint": "eslint --ext .js,.jsx src"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "@ant-design/pro-card": "^2.0.21",
+    "@ant-design/pro-layout": "^7.1.15",
+    "@emotion/css": "^11.10.5",
     "antd": "^4.23.6",
     "babel-polyfill": "^6.26.0",
-    "dva": "^2.4.1",
-    "dva-loading": "^3.0.22",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2"
+    "dva": "^2.4.0",
+    "dva-loading": "^2.0.5",
+    "react": "^16.12.0",
+    "react-dom": "^16.5.2"
   },
   "devDependencies": {
     "@yy/eslint-config-fe": "^2.3.0",
     "babel-plugin-dva-hmr": "^0.4.1",
     "babel-plugin-import": "^1.9.1",
     "eslint": "^5.13.0",
+    "less": "^3.13.1",
     "less-loader": "^5.0.0"
   },
   "eslintConfig": {

@@ -1,10 +1,11 @@
-
 import React from 'react'
 import { Router, Switch, Route, Redirect } from 'dva/router'
+// import { Switch, Route, Redirect } from 'react-router-dom'
 import dynamic from './dynamic'
-
-export default ({ history, app }) => {
-  /*
+import Layout from '../page/layout'
+import IndexPage from '../page/demo' 
+ 
+/*
   <Route />
   history: 可以通过代码控制前进、后退
 
@@ -19,16 +20,18 @@ export default ({ history, app }) => {
   <redirect />
   push: 值为 true 时不会替换当前页面，而是在历史记录栈中新增一条记录。
   from: 相当于 <route> 中的 path 属性，匹配 url 地址，匹配成功，跳转到另一个 url 地址。
-  */
-  const routeList = <Switch>
-    <Redirect from='/' to='/home' exact strict />
-    <Route path='/home' exact strict component={dynamic({ component: () => import('../page/demo') })} />
-    <Route component={dynamic({ component: () => import('../page/404') })} />
-  </Switch>
+*/
 
+export default ({ history, app }) => {
+  console.debug('history==>', history)
   return (
     <Router history={history}>
-      {routeList}
+      <Switch>
+        <Redirect from='/' to='/lo' exact strict />
+        <Route path='/lo' component={Layout} />
+        <Route path='/page/demo' component={IndexPage} />
+        <Route path='/page' component={dynamic({ component: () => import('../page/404') })} />
+      </Switch>
     </Router>
   )
 }
