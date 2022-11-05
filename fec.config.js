@@ -1,6 +1,6 @@
 const path = require('path')
 const BASE_PATH = '/boss'
-const targetUrl = 'https://172.29.190.69:4000'
+const targetUrl = 'https://localhost:4000'
 let cdn = BASE_PATH
 
 module.exports = (mode, req) => {
@@ -42,6 +42,7 @@ module.exports = (mode, req) => {
       proxy: {
         [`!(${BASE_PATH}/**)`]: {
           target: targetUrl,
+          logLevel: 'debug',
           changeOrigin: true
         }
       }
