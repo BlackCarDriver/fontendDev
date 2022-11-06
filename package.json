@@ -19,6 +19,7 @@
     "babel-polyfill": "^6.26.0",
     "dva": "^2.4.0",
     "dva-loading": "^2.0.5",
+    "fetch-jsonp": "^1.2.3",
     "react": "^16.12.0",
     "react-dom": "^16.5.2"
   },
@@ -37,6 +38,8 @@
     },
     "rules": {
       "react/prop-types": 0,
+      "template-curly-spacing": "off",
+      "indent":"off",
       "no-trailing-spaces": [
         "off",
         {

@@ -62,7 +62,12 @@ const menuConfig = [
 
 export default ({ history, app }) => {
   const { location } = history
-  // console.debug('location==>', location)
+
+  // 注册页面和路由
+  const demoPage = dynamicLoadByPath('demo', app)
+  const welcomePage = dynamicLoadByPath('welcome', app)
+  const notFoundPage = dynamicLoadByPath('404', app)
+
   return (
     <Router history={history}>
       <Switch>
@@ -70,19 +75,19 @@ export default ({ history, app }) => {
         <Route path='/'>
           <Layout location={location} route={{ path: '/', routes: menuConfig }}>
             <Switch>
-              <Route path='/welcome' exact component={dynamic({ component: () => import('@/page/welcome') })} />
-              <Route path='/cfg/:business/component' component={dynamic({ component: () => import('@/page/demo') })} />
-              <Route path='/cfg/:business/strategy' component={dynamic({ component: () => import('@/page/demo') })} />
-              <Route path='/cfg/:business/stat' component={dynamic({ component: () => import('@/page/demo') })} />
+              <Route path='/welcome' exact component={welcomePage} />
+              <Route path='/cfg/:business/component' component={demoPage} />
+              <Route path='/cfg/:business/strategy' component={demoPage} />
+              <Route path='/cfg/:business/stat' component={demoPage} />
               <Redirect from='/cfg/:business' to='/cfg/:business/component' exact strict />
               
-              <Route path='/stat/business' component={dynamic({ component: () => import('@/page/demo') })} />
-              <Route path='/stat/system' component={dynamic({ component: () => import('@/page/demo') })} />
+              <Route path='/stat/business' component={demoPage} />
+              <Route path='/stat/system' component={demoPage} />
 
-              <Route path='/admin/business' component={dynamic({ component: () => import('@/page/demo') })} />
-              <Route path='/admin/auth' component={dynamic({ component: () => import('@/page/demo') })} />
+              <Route path='/admin/business' component={demoPage} />
+              <Route path='/admin/auth' component={demoPage} />
 
-              <Route component={dynamic({ component: () => import('../page/404') })} />
+              <Route component={notFoundPage} />
             </Switch>
           </Layout>
         </Route>
@@ -90,4 +95,29 @@ export default ({ history, app }) => {
       </Switch>
     </Router>
   )
+}
+
+function dynamicLoadByPath (name, app) {
+  const model = () => [
+    (async () => {
+      let promiseModel
+      try {
+        promiseModel = await import(`../page${name}/model.js`)
+      } catch (err) {
+        console.log(`can not load model: err=${err}`)
+      }
+      return promiseModel
+    })()
+  ]
+  const component = async () => {
+    let promiseComponent
+    try {
+      promiseComponent = await import(`../page/${name}/index.js`)
+    } catch (err) {
+      console.info(`can not load component:  err=${err}`)
+      promiseComponent = () => { return <>not found</> }
+    }
+    return promiseComponent
+  }
+  return dynamic({ app, model, component }) 
 }

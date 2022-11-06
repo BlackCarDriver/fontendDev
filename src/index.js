@@ -17,7 +17,7 @@ async function init () {
   app.use(createLoading())
   
   // 3. Model
-  // app.model(require('./models/example').default);
+  app.model(require('./page/demo/model').default)
   
   // 4. Router
   app.router(router)
